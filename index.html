@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Monats | $THEMONATS | 16-Bit Pixel Memecoin on Monad Chain</title>
+<meta name="description" content="The Monats ($THEMONATS) — Classic 16-bit pixel art memecoin launching on Monad Chain via nad.fun. Join the retro revolution!" />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="The Monats | $THEMONATS" />
+<meta property="og:description" content="Classic 16-bit pixel memecoin on Monad Chain. Launching on nad.fun." />
+<meta property="og:image" content="https://i.imgur.com/nDgCUD4.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The Monats | $THEMONATS" />
+<meta name="twitter:image" content="https://i.imgur.com/nDgCUD4.png" />
+<link rel="icon" type="image/png" href="https://i.imgur.com/nDgCUD4.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#080814;color:#e2e8f0;font-family:'Press Start 2P',monospace;overflow-x:hidden;image-rendering:pixelated}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);pointer-events:none;z-index:9999}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#080814}
+::-webkit-scrollbar-thumb{background:#a855f7}
+canvas#particles{position:fixed;top:0;left:0;pointer-events:none;z-index:0}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(8,8,20,.97);border-bottom:4px solid #a855f7;box-shadow:0 4px 0 #06b6d4}
+.nav-inner{max-width:1100px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.nav-logo img{width:34px;height:34px;image-rendering:pixelated}
+.nav-logo span{font-size:10px;color:#f59e0b;letter-spacing:1px}
+.nav-links{display:flex;gap:20px}
+.nav-links a{font-size:7px;color:#a855f7;transition:color .2s;cursor:pointer;border:none;background:none;font-family:'Press Start 2P',monospace}
+.nav-links a:hover{color:#facc15}
+.hamburger{display:none;font-size:12px;color:#a855f7;background:none;border:2px solid #a855f7;padding:5px 9px;cursor:pointer;font-family:'Press Start 2P',monospace}
+.mobile-nav{display:none;background:rgba(8,8,20,.98);border-top:2px solid #a855f7;padding:16px}
+.mobile-nav.open{display:block}
+.mobile-nav a{display:block;font-size:9px;color:#a855f7;padding:10px 0;border-bottom:1px solid #a855f722;cursor:pointer;background:none;border-left:none;border-right:none;width:100%;text-align:left;font-family:'Press Start 2P',monospace}
+@media(max-width:768px){.nav-links{display:none}.hamburger{display:block}}
+
+/* LAYOUT */
+section{position:relative;z-index:1;padding:80px 16px}
+.container{max-width:1100px;margin:0 auto}
+.section-title{font-size:clamp(13px,2.5vw,22px);text-align:center;margin-bottom:16px;text-shadow:4px 4px 0 #000}
+.section-divider{height:4px;margin-bottom:40px}
+
+/* PIXEL GRID BG */
+.pixel-grid{background-image:linear-gradient(rgba(128,0,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(128,0,255,.05) 1px,transparent 1px);background-size:32px 32px}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:80px;padding-bottom:64px;text-align:center}
+.star-field{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-logo{width:160px;height:160px;image-rendering:pixelated;filter:drop-shadow(0 0 24px #a855f7) drop-shadow(0 0 48px #a855f744);animation:float 2s ease-in-out infinite;margin-bottom:28px;display:block}
+.hero-title{font-size:clamp(18px,4vw,36px);color:#facc15;line-height:1.5;margin-bottom:12px;text-shadow:4px 4px 0 #000,0 0 20px #f59e0b;animation:glitch 3s infinite}
+.hero-ticker{font-size:clamp(12px,2.5vw,20px);color:#a855f7;margin-bottom:20px;text-shadow:2px 2px 0 #000}
+.hero-sub{font-family:'VT323',monospace;font-size:22px;color:#06b6d4;margin-bottom:8px;letter-spacing:2px}
+.hero-sub2{font-family:'VT323',monospace;font-size:18px;color:#64748b;margin-bottom:32px;letter-spacing:1px}
+.ca-box{background:#0f0f1e;border:4px solid #a855f7;padding:16px 24px;margin-bottom:32px;max-width:480px;width:90%;box-shadow:4px 4px 0 #000,0 0 20px #a855f744}
+.ca-label{font-size:8px;color:#94a3b8;margin-bottom:10px}
+.ca-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ca-value{font-family:'VT323',monospace;font-size:22px;color:#f59e0b;letter-spacing:2px;flex:1}
+.btn-copy{font-family:'Press Start 2P',monospace;font-size:8px;background:#a855f7;color:#fff;border:none;padding:8px 12px;cursor:pointer;box-shadow:2px 2px 0 #000;transition:background .2s}
+.btn-copy.copied{background:#22c55e}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-bottom:40px}
+.btn-primary{font-family:'Press Start 2P',monospace;font-size:9px;background:#a855f7;color:#fff;border:none;padding:14px 24px;cursor:pointer;box-shadow:4px 4px 0 #000,0 0 20px #a855f744;letter-spacing:1px;transition:filter .2s;text-decoration:none;display:inline-block}
+.btn-primary:hover{filter:brightness(1.25)}
+.btn-x{background:#111827!important;border:4px solid #fff}
+.btn-tg{background:#0088cc!important;border:none}
+.scroll-hint{text-align:center;margin-top:8px}
+.scroll-hint p{font-size:7px;color:#475569;margin-bottom:8px}
+.scroll-arrow{font-size:20px;color:#a855f7;animation:float 1s ease-in-out infinite;display:inline-block}
+
+/* MARQUEE */
+.marquee-bar{background:#a855f7;padding:10px 0;overflow:hidden;border-top:4px solid #facc15;border-bottom:4px solid #facc15;position:relative;z-index:1}
+.marquee-inner{display:flex;gap:0;white-space:nowrap;animation:marquee 20s linear infinite;width:max-content}
+.marquee-inner span{font-size:9px;color:#fff;letter-spacing:2px;padding-right:48px}
+
+/* ABOUT */
+#about{background:#080814}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;background:#0d0d1a;border:4px solid #a855f7;padding:32px;box-shadow:8px 8px 0 #000,0 0 40px #a855f722}
+@media(max-width:640px){.about-grid{grid-template-columns:1fr}}
+.about-logo-row{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.about-logo-row img{width:64px;height:64px;image-rendering:pixelated}
+.about-logo-name{font-size:10px;color:#a855f7}
+.about-logo-ticker{font-family:'VT323',monospace;font-size:20px;color:#06b6d4}
+.about-desc{font-family:'VT323',monospace;font-size:19px;color:#cbd5e1;line-height:1.7;margin-bottom:14px}
+.info-row{background:#080814;border:2px solid #a855f722;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.info-label{font-size:7px;color:#64748b}
+.info-value{font-family:'VT323',monospace;font-size:18px;color:#facc15}
+
+/* TOKENOMICS */
+#tokenomics{background:#0a0a18}
+.tbar-row{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.tbar-label{width:100px;text-align:right;font-size:8px}
+.tbar-wrap{flex:1;background:#1a1a2e;border:2px solid;height:20px;position:relative;overflow:hidden}
+.tbar-fill{height:100%;transition:width 1.2s ease-out;background-image:repeating-linear-gradient(90deg,transparent,transparent 6px,rgba(0,0,0,.2) 6px,rgba(0,0,0,.2) 8px);width:0%}
+.tbar-pct{width:44px;font-size:9px;color:#facc15}
+.tcard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-top:48px}
+.tcard{background:#0d0d1a;border:4px solid;padding:20px 16px;text-align:center;box-shadow:4px 4px 0 #000}
+.tcard-pct{font-size:clamp(18px,3vw,28px);margin-bottom:8px}
+.tcard-label{font-size:8px;color:#94a3b8}
+
+/* ROADMAP */
+#roadmap{background:#080814}
+.rm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+.rm-card{background:#0d0d1a;border:4px solid;padding:24px;box-shadow:4px 4px 0 #000;position:relative}
+.rm-badge{position:absolute;top:-12px;right:12px;background:#22c55e;color:#fff;font-family:'Press Start 2P',monospace;font-size:7px;padding:4px 8px;box-shadow:2px 2px 0 #000}
+.rm-phase{font-size:9px;margin-bottom:8px}
+.rm-title{font-size:12px;color:#facc15;margin-bottom:20px}
+.rm-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.rm-item{font-family:'VT323',monospace;font-size:18px;color:#cbd5e1;display:flex;gap:8px}
+
+/* HOW TO BUY */
+#howtobuy{background:#0a0a18}
+.htb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:24px}
+.htb-card{background:#0d0d1a;border:4px solid;padding:24px;text-align:center;box-shadow:4px 4px 0 #000}
+.htb-step{font-size:28px;margin-bottom:16px}
+.htb-title{font-size:9px;color:#facc15;margin-bottom:16px}
+.htb-desc{font-family:'VT323',monospace;font-size:19px;color:#94a3b8;line-height:1.5}
+.htb-cta{text-align:center;margin-top:48px}
+.btn-big{font-family:'Press Start 2P',monospace;font-size:11px;background:linear-gradient(135deg,#a855f7,#06b6d4);color:#fff;padding:18px 40px;display:inline-block;box-shadow:6px 6px 0 #000,0 0 30px #a855f744;letter-spacing:1px;transition:filter .2s;text-decoration:none}
+.btn-big:hover{filter:brightness(1.2)}
+
+/* GALLERY */
+#gallery{background:#080814}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.gallery-item{cursor:pointer;background:#0d0d1a;border:4px solid #1e1e3a;overflow:hidden;aspect-ratio:1/1;position:relative;transition:box-shadow .2s,transform .2s}
+.gallery-item:hover{box-shadow:0 0 0 4px #a855f7,0 0 20px #a855f766;transform:scale(1.04)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;image-rendering:auto;display:block}
+.gallery-item .overlay{position:absolute;inset:0;background:rgba(168,85,247,0);display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;opacity:0;transition:all .2s;font-family:'Press Start 2P',monospace}
+.gallery-item:hover .overlay{opacity:1;background:rgba(168,85,247,.5)}
+.gallery-meta{font-family:'VT323',monospace;font-size:18px;color:#64748b;text-align:center;margin-bottom:24px}
+
+/* AUDIT */
+#audit{background:#0a0a18}
+.audit-card{background:#0d0d1a;border:4px solid;padding:24px;display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;margin-bottom:20px;box-shadow:4px 4px 0 #000}
+.audit-status{min-width:100px;text-align:center}
+.audit-badge{font-size:7px;border:2px solid;padding:6px 8px;white-space:nowrap;display:inline-block;font-family:'Press Start 2P',monospace}
+.audit-title{font-size:10px;color:#facc15;margin-bottom:12px}
+.audit-desc{font-family:'VT323',monospace;font-size:19px;color:#94a3b8;line-height:1.6}
+.audit-note{background:#0d0d1a;border:4px solid #f59e0b;padding:24px;margin-top:8px;box-shadow:4px 4px 0 #000}
+.audit-note-title{font-size:8px;color:#f59e0b;margin-bottom:14px}
+.audit-note-desc{font-family:'VT323',monospace;font-size:19px;color:#94a3b8;line-height:1.7}
+
+/* FOOTER */
+footer{background:#050510;border-top:4px solid #a855f7;padding:48px 16px;position:relative;z-index:1;text-align:center}
+.footer-logo{width:72px;height:72px;image-rendering:pixelated;margin:0 auto 20px;animation:float 2s ease-in-out infinite;display:block}
+.footer-title{font-size:13px;color:#facc15;text-shadow:4px 4px 0 #000;margin-bottom:8px}
+.footer-sub{font-family:'VT323',monospace;font-size:18px;color:#a855f7;margin-bottom:32px}
+.social-row{display:flex;gap:24px;justify-content:center;margin-bottom:36px}
+.social-btn{display:flex;flex-direction:column;align-items:center;gap:8px;background:#0f0f1e;padding:16px 24px;min-width:100px;transition:filter .2s;box-shadow:4px 4px 0 #000;text-decoration:none}
+.social-btn:hover{filter:brightness(1.3)}
+.social-btn .icon{font-size:26px;font-weight:bold}
+.social-btn .label{font-size:7px;font-family:'Press Start 2P',monospace}
+.footer-divider{height:2px;background:linear-gradient(90deg,transparent,#a855f7,#06b6d4,#a855f7,transparent);margin-bottom:20px}
+.footer-copy{font-family:'VT323',monospace;font-size:17px;color:#334155;margin-bottom:6px}
+.footer-disclaimer{font-size:7px;color:#1e293b}
+.footer-made{margin-top:20px;font-size:7px;color:#a855f733}
+
+/* TEAM */
+#team{background:#080814}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
+.team-card{background:#0d0d1a;border:4px solid;padding:28px 20px;text-align:center;box-shadow:4px 4px 0 #000;position:relative}
+.team-anon{position:absolute;top:-12px;left:50%;transform:translateX(-50%);color:#fff;font-family:'Press Start 2P',monospace;font-size:6px;padding:3px 8px;box-shadow:2px 2px 0 #000;white-space:nowrap}
+.team-avatar{width:80px;height:80px;margin:8px auto 16px;display:flex;align-items:center;justify-content:center;font-size:36px;border:4px solid}
+.team-name{font-size:9px;margin-bottom:6px}
+.team-role{font-size:7px;color:#facc15;margin-bottom:14px}
+.team-desc{font-family:'VT323',monospace;font-size:18px;color:#94a3b8;line-height:1.5}
+
+/* FAQ */
+#faq{background:#0a0a18}
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-item{background:#0d0d1a;border:4px solid #1e1e3a;box-shadow:4px 4px 0 #000;transition:border-color .2s}
+.faq-item.open{border-color:#06b6d4;box-shadow:4px 4px 0 #000,0 0 16px #06b6d433}
+.faq-btn{width:100%;text-align:left;background:none;border:none;padding:18px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-q{font-family:'Press Start 2P',monospace;font-size:clamp(7px,1.2vw,9px);color:#e2e8f0;line-height:1.6}
+.faq-item.open .faq-q{color:#06b6d4}
+.faq-arrow{font-family:'Press Start 2P',monospace;font-size:10px;color:#a855f7;flex-shrink:0}
+.faq-item.open .faq-arrow{color:#06b6d4}
+.faq-a{display:none;padding:0 20px 20px;border-top:2px solid #06b6d422}
+.faq-item.open .faq-a{display:block}
+.faq-a p{font-family:'VT323',monospace;font-size:20px;color:#94a3b8;line-height:1.7;margin-top:12px}
+
+/* SHARE BTN */
+.share-fab{position:fixed;bottom:28px;right:24px;z-index:500;background:#111827;border:4px solid #fff;color:#fff;font-family:'Press Start 2P',monospace;font-size:8px;padding:10px 14px;box-shadow:4px 4px 0 #000,0 0 20px #ffffff33;cursor:pointer;text-decoration:none;display:flex;align-items:center;gap:8px;opacity:0;transform:translateY(20px);transition:opacity .3s,transform .3s;pointer-events:none}
+.share-fab.visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.share-fab:hover{filter:brightness(1.3)}
+.share-icon{font-size:16px;font-weight:bold}
+
+/* LIGHTBOX */
+#lightbox{display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.93);align-items:center;justify-content:center;cursor:pointer}
+#lightbox.open{display:flex}
+.lb-inner{position:relative;max-width:90vw;max-height:90vh}
+#lb-img{max-width:80vw;max-height:80vh;image-rendering:auto;border:4px solid #a855f7;box-shadow:0 0 40px #a855f7aa}
+.lb-close{position:absolute;top:-16px;right:-16px;background:#a855f7;color:#fff;border:none;font-size:10px;width:32px;height:32px;cursor:pointer;box-shadow:2px 2px 0 #000;font-family:'Press Start 2P',monospace}
+
+/* ANIMATIONS */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes glitch{0%{text-shadow:2px 0 #06b6d4,-2px 0 #a855f7,4px 4px 0 #000,0 0 20px #f59e0b}25%{text-shadow:-2px 0 #06b6d4,2px 0 #a855f7,4px 4px 0 #000,0 0 20px #f59e0b}50%{text-shadow:4px 0 #06b6d4,-4px 0 #a855f7,4px 4px 0 #000,0 0 20px #f59e0b}75%{text-shadow:-3px 0 #06b6d4,3px 0 #a855f7,4px 4px 0 #000,0 0 20px #f59e0b}100%{text-shadow:2px 0 #06b6d4,-2px 0 #a855f7,4px 4px 0 #000,0 0 20px #f59e0b}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes twinkle{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.5)}}
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease-out,transform .7s ease-out}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <div class="lb-inner" onclick="event.stopPropagation()">
+    <img id="lb-img" src="" alt="meme" />
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <img src="https://i.imgur.com/nDgCUD4.png" alt="logo" />
+      <span>$THEMONATS</span>
+    </div>
+    <div class="nav-links">
+      <a onclick="goTo('about')">ABOUT</a>
+      <a onclick="goTo('tokenomics')">TOKENOMICS</a>
+      <a onclick="goTo('roadmap')">ROADMAP</a>
+      <a onclick="goTo('howtobuy')">HOW TO BUY</a>
+      <a onclick="goTo('gallery')">GALLERY</a>
+      <a onclick="goTo('team')">TEAM</a>
+      <a onclick="goTo('faq')">FAQ</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a onclick="goTo('about')">ABOUT</a>
+    <a onclick="goTo('tokenomics')">TOKENOMICS</a>
+    <a onclick="goTo('roadmap')">ROADMAP</a>
+    <a onclick="goTo('howtobuy')">HOW TO BUY</a>
+    <a onclick="goTo('gallery')">GALLERY</a>
+    <a onclick="goTo('team')">TEAM</a>
+    <a onclick="goTo('faq')">FAQ</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="pixel-grid">
+  <div class="star-field" id="stars"></div>
+  <img class="hero-logo" src="https://i.imgur.com/nDgCUD4.png" alt="The Monats Logo" />
+  <h1 class="hero-title">THE MONATS</h1>
+  <p class="hero-ticker">$THEMONATS</p>
+  <p class="hero-sub2">ON MONAD CHAIN • LAUNCHING ON NAD.FUN</p>
+  <div class="ca-box">
+    <p class="ca-label">CONTRACT ADDRESS:</p>
+    <div class="ca-row">
+      <span class="ca-value">⚠ COMING SOON ⚠</span>
+      <button class="btn-copy" id="copy-btn" onclick="copyCA()">COPY</button>
+    </div>
+  </div>
+  <div class="hero-btns">
+    <a href="https://nad.fun" target="_blank" rel="noopener" class="btn-primary">► BUY ON NAD.FUN</a>
+    <a href="https://x.com/TheMonats" target="_blank" rel="noopener" class="btn-primary btn-x">𝕏 FOLLOW</a>
+    <a href="https://t.me/Themonats" target="_blank" rel="noopener" class="btn-primary btn-tg">✈ TELEGRAM</a>
+  </div>
+  <div class="scroll-hint">
+    <p>SCROLL DOWN</p>
+    <span class="scroll-arrow">▼</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span>★ $THEMONATS ★ MONAD CHAIN ★ NAD.FUN ★ TO THE MOON ★ 16-BIT PIXEL ★ COMMUNITY TOKEN ★ </span>
+    <span>★ $THEMONATS ★ MONAD CHAIN ★ NAD.FUN ★ TO THE MOON ★ 16-BIT PIXEL ★ COMMUNITY TOKEN ★ </span>
+    <span>★ $THEMONATS ★ MONAD CHAIN ★ NAD.FUN ★ TO THE MOON ★ 16-BIT PIXEL ★ COMMUNITY TOKEN ★ </span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title" style="color:#facc15">░ ABOUT THE MONATS ░</h2>
+    <div class="section-divider" style="background:linear-gradient(90deg,transparent,#a855f7,#06b6d4,#a855f7,transparent)"></div>
+    <div class="about-grid fade-in">
+      <div>
+        <div class="about-logo-row">
+          <img src="https://i.imgur.com/nDgCUD4.png" alt="logo" />
+          <div>
+            <div class="about-logo-name">THE MONATS</div>
+            <div class="about-logo-ticker">$THEMONATS</div>
+          </div>
+        </div>
+        <p class="about-desc">The Monats is a community-driven memecoin inspired by classic 16-bit pixel art from the golden age of SNES and Sega gaming. We bring nostalgia, fun, and moon potential to the Monad blockchain.</p>
+        <p class="about-desc" style="color:#94a3b8">Launching on nad.fun — the premier launchpad for Monad Chain memecoins — The Monats aims to unite retro gaming fans and crypto degens in one epic community.</p>
+      </div>
+      <div>
+        <div class="info-row"><span class="info-label">⛓ NETWORK</span><span class="info-value">MONAD CHAIN</span></div>
+        <div class="info-row"><span class="info-label">🚀 PLATFORM</span><span class="info-value">NAD.FUN</span></div>
+        <div class="info-row"><span class="info-label">💰 TICKER</span><span class="info-value">$THEMONATS</span></div>
+        <div class="info-row"><span class="info-label">📋 CONTRACT</span><span class="info-value">COMING SOON</span></div>
+        <div class="info-row"><span class="info-label">🎮 STYLE</span><span class="info-value">16-BIT PIXEL</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOKENOMICS -->
+<section id="tokenomics">
+  <div class="container">
+    <h2 class="section-title" style="color:#06b6d4">░ TOKENOMICS ░</h2>
+    <div class="section-divider" style="background:linear-gradient(90deg,transparent,#06b6d4,#a855f7,#06b6d4,transparent)"></div>
+    <p style="text-align:center;font-family:'VT323',monospace;font-size:18px;color:#64748b;margin-bottom:40px">TOTAL SUPPLY: 1,000,000,000 $THEMONATS</p>
+    <div id="tbars" class="fade-in">
+      <div class="tbar-row"><div class="tbar-label" style="color:#a855f7">DEV</div><div class="tbar-wrap" style="border-color:#a855f7"><div class="tbar-fill" style="background:#a855f7" data-pct="16"></div></div><div class="tbar-pct">16%</div></div>
+      <div class="tbar-row"><div class="tbar-label" style="color:#06b6d4">LIQUIDITY</div><div class="tbar-wrap" style="border-color:#06b6d4"><div class="tbar-fill" style="background:#06b6d4" data-pct="73"></div></div><div class="tbar-pct">73%</div></div>
+      <div class="tbar-row"><div class="tbar-label" style="color:#f59e0b">COMMUNITY</div><div class="tbar-wrap" style="border-color:#f59e0b"><div class="tbar-fill" style="background:#f59e0b" data-pct="4"></div></div><div class="tbar-pct">4%</div></div>
+      <div class="tbar-row"><div class="tbar-label" style="color:#22c55e">MARKETING</div><div class="tbar-wrap" style="border-color:#22c55e"><div class="tbar-fill" style="background:#22c55e" data-pct="4"></div></div><div class="tbar-pct">4%</div></div>
+      <div class="tbar-row"><div class="tbar-label" style="color:#ec4899">AIRDROP</div><div class="tbar-wrap" style="border-color:#ec4899"><div class="tbar-fill" style="background:#ec4899" data-pct="3"></div></div><div class="tbar-pct">3%</div></div>
+    </div>
+    <div class="tcard-grid fade-in">
+      <div class="tcard" style="border-color:#a855f7;box-shadow:4px 4px 0 #000,0 0 16px #a855f744"><div class="tcard-pct" style="color:#a855f7">16%</div><div class="tcard-label">DEV</div></div>
+      <div class="tcard" style="border-color:#06b6d4;box-shadow:4px 4px 0 #000,0 0 16px #06b6d444"><div class="tcard-pct" style="color:#06b6d4">73%</div><div class="tcard-label">LIQUIDITY</div></div>
+      <div class="tcard" style="border-color:#f59e0b;box-shadow:4px 4px 0 #000,0 0 16px #f59e0b44"><div class="tcard-pct" style="color:#f59e0b">4%</div><div class="tcard-label">COMMUNITY</div></div>
+      <div class="tcard" style="border-color:#22c55e;box-shadow:4px 4px 0 #000,0 0 16px #22c55e44"><div class="tcard-pct" style="color:#22c55e">4%</div><div class="tcard-label">MARKETING</div></div>
+      <div class="tcard" style="border-color:#ec4899;box-shadow:4px 4px 0 #000,0 0 16px #ec489944"><div class="tcard-pct" style="color:#ec4899">3%</div><div class="tcard-label">AIRDROP</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap" style="background:#080814">
+  <div class="container">
+    <h2 class="section-title" style="color:#f59e0b">░ ROADMAP ░</h2>
+    <div class="section-divider" style="background:linear-gradient(90deg,transparent,#f59e0b,#a855f7,#f59e0b,transparent)"></div>
+    <div class="rm-grid fade-in">
+      <div class="rm-card" style="border-color:#a855f7;box-shadow:4px 4px 0 #000,0 0 20px #a855f733">
+        <div class="rm-badge">✓ ACTIVE</div>
+        <div class="rm-phase" style="color:#a855f7">PHASE 1</div>
+        <div class="rm-title">GENESIS</div>
+        <ul class="rm-list">
+          <li class="rm-item"><span style="color:#a855f7">►</span>Token creation on nad.fun</li>
+          <li class="rm-item"><span style="color:#a855f7">►</span>Website launch</li>
+          <li class="rm-item"><span style="color:#a855f7">►</span>Social media setup (X &amp; Telegram)</li>
+          <li class="rm-item"><span style="color:#a855f7">►</span>Community building begins</li>
+          <li class="rm-item"><span style="color:#a855f7">►</span>Logo &amp; branding complete</li>
+        </ul>
+      </div>
+      <div class="rm-card" style="border-color:#06b6d4;box-shadow:4px 4px 0 #000,0 0 20px #06b6d433">
+        <div class="rm-phase" style="color:#06b6d4">PHASE 2</div>
+        <div class="rm-title">LEVEL UP</div>
+        <ul class="rm-list">
+          <li class="rm-item"><span style="color:#06b6d4">►</span>Contract audit</li>
+          <li class="rm-item"><span style="color:#06b6d4">►</span>CEX listing campaign</li>
+          <li class="rm-item"><span style="color:#06b6d4">►</span>1,000+ holder milestone</li>
+          <li class="rm-item"><span style="color:#06b6d4">►</span>Meme contest &amp; giveaways</li>
+          <li class="rm-item"><span style="color:#06b6d4">►</span>Influencer partnerships</li>
+        </ul>
+      </div>
+      <div class="rm-card" style="border-color:#f59e0b;box-shadow:4px 4px 0 #000,0 0 20px #f59e0b33">
+        <div class="rm-phase" style="color:#f59e0b">PHASE 3</div>
+        <div class="rm-title">BOSS FIGHT</div>
+        <ul class="rm-list">
+          <li class="rm-item"><span style="color:#f59e0b">►</span>Major DEX listing</li>
+          <li class="rm-item"><span style="color:#f59e0b">►</span>10,000+ holder milestone</li>
+          <li class="rm-item"><span style="color:#f59e0b">►</span>Monad ecosystem integrations</li>
+          <li class="rm-item"><span style="color:#f59e0b">►</span>NFT collection launch</li>
+          <li class="rm-item"><span style="color:#f59e0b">►</span>Community governance</li>
+        </ul>
+      </div>
+      <div class="rm-card" style="border-color:#22c55e;box-shadow:4px 4px 0 #000,0 0 20px #22c55e33">
+        <div class="rm-phase" style="color:#22c55e">PHASE 4</div>
+        <div class="rm-title">FINAL STAGE</div>
+        <ul class="rm-list">
+          <li class="rm-item"><span style="color:#22c55e">►</span>Top tier CEX listing</li>
+          <li class="rm-item"><span style="color:#22c55e">►</span>100,000+ holder milestone</li>
+          <li class="rm-item"><span style="color:#22c55e">►</span>The Monats DAO</li>
+          <li class="rm-item"><span style="color:#22c55e">►</span>Cross-chain expansion</li>
+          <li class="rm-item"><span style="color:#22c55e">►</span>THE MOON 🚀</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO BUY -->
+<section id="howtobuy">
+  <div class="container">
+    <h2 class="section-title" style="color:#22c55e">░ HOW TO BUY ░</h2>
+    <div class="section-divider" style="background:linear-gradient(90deg,transparent,#22c55e,#06b6d4,#22c55e,transparent)"></div>
+    <div class="htb-grid fade-in">
+      <div class="htb-card" style="border-color:#a855f7;box-shadow:4px 4px 0 #000,0 0 16px #a855f733">
+        <div class="htb-step" style="color:#a855f7;text-shadow:0 0 10px #a855f7">01</div>
+        <div class="htb-title">GET MONAD</div>
+        <p class="htb-desc">Buy MON tokens from a supported exchange and set up your Web3 wallet (MetaMask or Rabby).</p>
+      </div>
+      <div class="htb-card" style="border-color:#06b6d4;box-shadow:4px 4px 0 #000,0 0 16px #06b6d433">
+        <div class="htb-step" style="color:#06b6d4;text-shadow:0 0 10px #06b6d4">02</div>
+        <div class="htb-title">CONNECT WALLET</div>
+        <p class="htb-desc">Go to nad.fun and connect your Web3 wallet to the Monad Chain network.</p>
+      </div>
+      <div class="htb-card" style="border-color:#f59e0b;box-shadow:4px 4px 0 #000,0 0 16px #f59e0b33">
+        <div class="htb-step" style="color:#f59e0b;text-shadow:0 0 10px #f59e0b">03</div>
+        <div class="htb-title">FIND $THEMONATS</div>
+        <p class="htb-desc">Search for $THEMONATS or paste the contract address on nad.fun to find our token.</p>
+      </div>
+      <div class="htb-card" style="border-color:#22c55e;box-shadow:4px 4px 0 #000,0 0 16px #22c55e33">
+        <div class="htb-step" style="color:#22c55e;text-shadow:0 0 10px #22c55e">04</div>
+        <div class="htb-title">SWAP &amp; HOLD</div>
+        <p class="htb-desc">Set slippage to 5-10%, swap MON for $THEMONATS, and join the retro revolution!</p>
+      </div>
+    </div>
+    <div class="htb-cta">
+      <a href="https://nad.fun" target="_blank" rel="noopener" class="btn-big">► BUY $THEMONATS NOW</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" style="background:#0a0a18">
+  <div class="container">
+    <h2 class="section-title" style="color:#ec4899">░ MEME GALLERY ░</h2>
+    <div class="section-divider" style="background:linear-gradient(90deg,transparent,#ec4899,#a855f7,#ec4899,transparent)"></div>
+    <p class="gallery-meta">CLICK IMAGE TO ENLARGE • 15 MEMES</p>
+    <div class="gallery-grid">
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/5Xyjh1N.png')"><img src="https://i.imgur.com/5Xyjh1N.png" alt="meme 1" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/cXgAvRA.png')"><img src="https://i.imgur.com/cXgAvRA.png" alt="meme 2" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/VpoJaKD.png')"><img src="https://i.imgur.com/VpoJaKD.png" alt="meme 3" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/R40j1tr.png')"><img src="https://i.imgur.com/R40j1tr.png" alt="meme 4" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/oWV9fwZ.png')"><img src="https://i.imgur.com/oWV9fwZ.png" alt="meme 5" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/aqvlSnD.png')"><img src="https://i.imgur.com/aqvlSnD.png" alt="meme 6" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/pW4oeWb.png')"><img src="https://i.imgur.com/pW4oeWb.png" alt="meme 7" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/XcRTMdM.png')"><img src="https://i.imgur.com/XcRTMdM.png" alt="meme 8" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/Wash0GT.png')"><img src="https://i.imgur.com/Wash0GT.png" alt="meme 9" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/yYtd9O6.png')"><img src="https://i.imgur.com/yYtd9O6.png" alt="meme 10" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/z0QpLu7.png')"><img src="https://i.imgur.com/z0QpLu7.png" alt="meme 11" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/o4jv5Kv.png')"><img src="https://i.imgur.com/o4jv5Kv.png" alt="meme 12" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/LMCnceD.png')"><img src="https://i.imgur.com/LMCnceD.png" alt="meme 13" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/cQyR4JN.png')"><img src="https://i.imgur.com/cQyR4JN.png" alt="meme 14" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+      <div class="gallery-item" onclick="openLightbox('https://i.imgur.com/QOgzBby.png')"><img src="https://i.imgur.com/QOgzBby.png" alt="meme 15" loading="lazy"/><div class="overlay">🔍 VIEW</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT PLAN -->
+<section id="audit">
+  <div class="container">
+    <h2 class="section-title" style="color:#f59e0b">░ AUDIT PLAN ░</h2>
+    <div class="section-divider" style="background:linear-gradient(90deg,transparent,#f59e0b,#22c55e,#f59e0b,transparent)"></div>
+    <div class="audit-card fade-in" style="border-color:#22c55e">
+      <div class="audit-status"><div class="audit-badge" style="color:#22c55e;border-color:#22c55e;background:#22c55e22">COMPLETED</div></div>
+      <div><h3 class="audit-title">INTERNAL CODE REVIEW</h3><p class="audit-desc">Smart contract manually reviewed by the development team. All logic checked for potential vulnerabilities before launch.</p></div>
+    </div>
+    <div class="audit-card fade-in" style="border-color:#22c55e">
+      <div class="audit-status"><div class="audit-badge" style="color:#22c55e;border-color:#22c55e;background:#22c55e22">COMPLETED</div></div>
+      <div><h3 class="audit-title">COMMUNITY AUDIT</h3><p class="audit-desc">Open-source code available for community review. Experienced community members invited to flag any concerns.</p></div>
+    </div>
+    <div class="audit-card fade-in" style="border-color:#06b6d4">
+      <div class="audit-status"><div class="audit-badge" style="color:#06b6d4;border-color:#06b6d4;background:#06b6d422">PLANNED</div></div>
+      <div><h3 class="audit-title">3RD PARTY AUDIT</h3><p class="audit-desc">Professional audit by a reputable blockchain security firm scheduled after achieving initial liquidity milestones.</p></div>
+    </div>
+    <div class="audit-card fade-in" style="border-color:#a855f7">
+      <div class="audit-status"><div class="audit-badge" style="color:#a855f7;border-color:#a855f7;background:#a855f722">PLANNED</div></div>
+      <div><h3 class="audit-title">CERTIK / HACKEN AUDIT</h3><p class="audit-desc">Full security audit by a top-tier firm (CertiK or Hacken) planned for Phase 2. Report will be fully public.</p></div>
+    </div>
+    <div class="audit-note fade-in">
+      <p class="audit-note-title">⚠ TRANSPARENCY NOTE:</p>
+      <p class="audit-note-desc">The Monats is a community memecoin. While we take security seriously and plan full audits, always DYOR (Do Your Own Research). Never invest more than you can afford to lose. This is for entertainment and community purposes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="container">
+    <h2 class="section-title" style="color:#a855f7">░ THE TEAM ░</h2>
+    <div class="section-divider" style="background:linear-gradient(90deg,transparent,#a855f7,#06b6d4,#a855f7,transparent)"></div>
+    <p style="font-family:'VT323',monospace;font-size:20px;color:#64748b;text-align:center;margin-bottom:40px">FULLY ANON • FULLY DEGEN • FULLY COMMITTED</p>
+    <div class="team-grid fade-in">
+      <div class="team-card" style="border-color:#a855f7;box-shadow:4px 4px 0 #000,0 0 20px #a855f733">
+        <div class="team-anon" style="background:#a855f7">ANON</div>
+        <div class="team-avatar" style="border-color:#a855f7;background:#a855f722;box-shadow:inset 0 0 20px #a855f733">🐑</div>
+        <div class="team-name" style="color:#a855f7">TheMonatsDEV</div>
+        <div class="team-role">LEAD DEVELOPER</div>
+        <p class="team-desc">Building in the dark, delivering in the light. Pixel-perfect smart contracts.</p>
+      </div>
+      <div class="team-card" style="border-color:#06b6d4;box-shadow:4px 4px 0 #000,0 0 20px #06b6d433">
+        <div class="team-anon" style="background:#06b6d4">ANON</div>
+        <div class="team-avatar" style="border-color:#06b6d4;background:#06b6d422;box-shadow:inset 0 0 20px #06b6d433">🚀</div>
+        <div class="team-name" style="color:#06b6d4">MOONBRO</div>
+        <div class="team-role">MARKETING</div>
+        <p class="team-desc">Making noise across chains. If you haven't heard of $THEMONATS, you will.</p>
+      </div>
+      <div class="team-card" style="border-color:#f59e0b;box-shadow:4px 4px 0 #000,0 0 20px #f59e0b33">
+        <div class="team-anon" style="background:#f59e0b">ANON</div>
+        <div class="team-avatar" style="border-color:#f59e0b;background:#f59e0b22;box-shadow:inset 0 0 20px #f59e0b33">🎮</div>
+        <div class="team-name" style="color:#f59e0b">RETROKING</div>
+        <div class="team-role">COMMUNITY MGR</div>
+        <p class="team-desc">Managing the herd. Keeping vibes high and FUD low since day one.</p>
+      </div>
+      <div class="team-card" style="border-color:#22c55e;box-shadow:4px 4px 0 #000,0 0 20px #22c55e33">
+        <div class="team-anon" style="background:#22c55e">ANON</div>
+        <div class="team-avatar" style="border-color:#22c55e;background:#22c55e22;box-shadow:inset 0 0 20px #22c55e33">✏️</div>
+        <div class="team-name" style="color:#22c55e">PIXELWOOL</div>
+        <div class="team-role">ART &amp; DESIGN</div>
+        <p class="team-desc">16-bit everything. Turning dreams into pixels, one sprite at a time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:#0a0a18">
+  <div class="container" style="max-width:800px">
+    <h2 class="section-title" style="color:#06b6d4">░ FAQ ░</h2>
+    <div class="section-divider" style="background:linear-gradient(90deg,transparent,#06b6d4,#a855f7,#06b6d4,transparent)"></div>
+    <div class="faq-list fade-in">
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">What is Monad Chain?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><p>Monad is a high-performance Layer-1 blockchain fully compatible with EVM. With 10,000+ TPS throughput and instant finality, Monad is the perfect home for memecoins like $THEMONATS.</p></div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">What is nad.fun?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><p>nad.fun is the premier memecoin launchpad on Monad Chain — similar to pump.fun on Solana. Anyone can create and buy tokens instantly without manual DEX listings.</p></div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">Is $THEMONATS safe?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><p>The contract has passed an internal review and community audit. A 3rd-party professional audit is planned for Phase 2. Always DYOR — never invest more than you can afford to lose.</p></div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">What slippage should I use?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><p>Set slippage to 5–10% when buying $THEMONATS on nad.fun. If the transaction fails, try increasing slippage slightly.</p></div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">What is the total supply of $THEMONATS?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><p>Total supply is 1,000,000,000 (1 Billion) $THEMONATS. No additional minting after launch.</p></div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">When will $THEMONATS be listed on a CEX?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><p>CEX listings are scheduled for Phase 2 &amp; 3 after reaching holder milestones. Follow our X and Telegram for the latest updates.</p></div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">How do I join the community?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><p>Join our Telegram at t.me/Themonats and follow us on X at x.com/TheMonats. All important announcements are posted there first.</p></div></div>
+      <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">Is there an airdrop?</span><span class="faq-arrow">▼</span></button><div class="faq-a"><p>Yes! 3% of the total supply is allocated for community airdrops. Watch for official announcements on Telegram and X for details on how to qualify.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SHARE FAB -->
+<a id="share-fab" class="share-fab" target="_blank" rel="noopener">
+  <span class="share-icon">𝕏</span> SHARE
+</a>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <img class="footer-logo" src="https://i.imgur.com/nDgCUD4.png" alt="logo" />
+    <h3 class="footer-title">THE MONATS</h3>
+    <p class="footer-sub">$THEMONATS • MONAD CHAIN • NAD.FUN</p>
+    <div class="social-row">
+      <a href="https://x.com/TheMonats" target="_blank" rel="noopener" class="social-btn" style="border:4px solid #fff;color:#fff">
+        <span class="icon">𝕏</span>
+        <span class="label">TWITTER/X</span>
+      </a>
+      <a href="https://t.me/Themonats" target="_blank" rel="noopener" class="social-btn" style="border:4px solid #0088cc;color:#0088cc">
+        <span class="icon">✈</span>
+        <span class="label">TELEGRAM</span>
+      </a>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="footer-copy">© 2025 THE MONATS. ALL RIGHTS RESERVED.</p>
+    <p class="footer-disclaimer">NOT FINANCIAL ADVICE. DYOR. MEMECOINS ARE HIGH RISK.</p>
+    <p class="footer-made">MADE WITH ❤ ON MONAD CHAIN</p>
+  </div>
+</footer>
+
+<script>
+function goTo(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});document.getElementById('mobile-nav').classList.remove('open')}
+
+// FAQ accordion
+function toggleFaq(btn){const item=btn.closest('.faq-item');const wasOpen=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(el=>{el.classList.remove('open');el.querySelector('.faq-arrow').textContent='▼'});if(!wasOpen){item.classList.add('open');btn.querySelector('.faq-arrow').textContent='▲'}}
+
+// Share FAB
+(function(){
+  const shareText='🚀 I just discovered $THEMONATS — the classic 16-bit pixel memecoin on Monad Chain! Launching on nad.fun. Don\'t miss this one! 🐑\n\n#THEMONATS #Monad #MonadChain #Memecoin #nadfun';
+  const shareUrl='https://twitter.com/intent/tweet?text='+encodeURIComponent(shareText)+'&url='+encodeURIComponent('https://x.com/TheMonats');
+  const fab=document.getElementById('share-fab');
+  fab.href=shareUrl;
+  window.addEventListener('scroll',()=>{if(window.scrollY>300)fab.classList.add('visible');else fab.classList.remove('visible')});
+})();
+function toggleMenu(){document.getElementById('mobile-nav').classList.toggle('open')}
+function copyCA(){const b=document.getElementById('copy-btn');navigator.clipboard.writeText('Coming Soon').then(()=>{b.textContent='✓ OK!';b.classList.add('copied');setTimeout(()=>{b.textContent='COPY';b.classList.remove('copied')},2000)})}
+function openLightbox(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open')}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.getElementById('lb-img').src=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+
+// STARS
+(function(){
+  const sf=document.getElementById('stars');
+  const colors=['#f59e0b','#06b6d4','#a855f7','#fff'];
+  for(let i=0;i<60;i++){
+    const d=document.createElement('div');
+    const s=i%3===0?4:2;
+    Object.assign(d.style,{position:'absolute',width:s+'px',height:s+'px',background:colors[i%colors.length],left:Math.random()*100+'%',top:Math.random()*100+'%',animation:`twinkle ${1.5+Math.random()*3}s ${Math.random()*2}s ease-in-out infinite`});
+    sf.appendChild(d);
+  }
+})();
+
+// PARTICLES
+(function(){
+  const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');
+  let W=window.innerWidth,H=window.innerHeight;
+  canvas.width=W;canvas.height=H;
+  window.addEventListener('resize',()=>{W=window.innerWidth;H=window.innerHeight;canvas.width=W;canvas.height=H});
+  const COLORS=['#a855f7','#06b6d4','#f59e0b','#22c55e','#ec4899','#facc15'];
+  const P=[];let frame=0;
+  function spawn(){P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.5,vy:-Math.random()*.8-.3,size:Math.floor(Math.random()*6+2),color:COLORS[Math.floor(Math.random()*COLORS.length)],life:0,maxLife:Math.random()*200+100,type:Math.random()<.5?'star':'pixel'})}
+  function draw(){
+    ctx.clearRect(0,0,W,H);frame++;
+    if(frame%8===0&&P.length<120)spawn();
+    for(let i=P.length-1;i>=0;i--){
+      const p=P[i];p.life++;p.x+=p.vx;p.y+=p.vy;
+      if(p.life>p.maxLife){P.splice(i,1);continue}
+      ctx.globalAlpha=1-p.life/p.maxLife;
+      if(p.type==='star'){const s=p.size;ctx.fillStyle=p.color;ctx.fillRect(p.x,p.y,s,s);ctx.fillRect(p.x-s,p.y,s,s);ctx.fillRect(p.x+s,p.y,s,s);ctx.fillRect(p.x,p.y-s,s,s);ctx.fillRect(p.x,p.y+s,s,s)}
+      else{ctx.fillStyle=p.color;ctx.fillRect(p.x,p.y,p.size,p.size)}
+    }
+    ctx.globalAlpha=1;requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// TOKENOMICS BARS
+(function(){
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.tbar-fill').forEach(b=>b.style.width=b.getAttribute('data-pct')+'%');obs.disconnect()}})},{threshold:.3});
+  const w=document.getElementById('tbars');if(w)obs.observe(w);
+})();
+
+// FADE IN
+(function(){
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.15});
+  document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+})();
+</script>
+</body>
+</html>
