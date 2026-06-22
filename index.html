@@ -160,6 +160,32 @@ footer{background:#050510;border-top:4px solid #a855f7;padding:48px 16px;positio
 .footer-disclaimer{font-size:7px;color:#1e293b}
 .footer-made{margin-top:20px;font-size:7px;color:#a855f733}
 
+/* PIXEL CURSOR */
+*{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Crect x='11' y='0' width='2' height='9' fill='%23a855f7'/%3E%3Crect x='11' y='15' width='2' height='9' fill='%23a855f7'/%3E%3Crect x='0' y='11' width='9' height='2' fill='%23a855f7'/%3E%3Crect x='15' y='11' width='9' height='2' fill='%23a855f7'/%3E%3Crect x='10' y='10' width='4' height='4' fill='%23facc15'/%3E%3Crect x='11' y='11' width='2' height='2' fill='%23000'/%3E%3C/svg%3E") 12 12,crosshair!important}
+
+/* DISCLAIMER BANNER */
+#disclaimer{position:fixed;bottom:0;left:0;right:0;z-index:2000;background:#0d0d1a;border-top:4px solid #f59e0b;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12;box-shadow:0 -4px 0 #000;transition:transform .4s}
+#disclaimer.hidden{transform:translateY(100%);pointer-events:none}
+.disc-text{display:flex;align-items:center;gap:12;flex:1;min-width:260px}
+.disc-label{color:#f59e0b;font-size:8px;margin-right:6px}
+.disc-msg{font-family:'VT323',monospace;font-size:18px;color:#94a3b8;line-height:1.5}
+.disc-btn{font-family:'Press Start 2P',monospace;font-size:8px;background:#f59e0b;color:#000;border:none;padding:10px 16px;cursor:pointer;box-shadow:3px 3px 0 #000;white-space:nowrap}
+.disc-btn:hover{filter:brightness(1.1)}
+
+/* MUSIC PLAYER */
+.music-fab{position:fixed;bottom:28px;left:24px;z-index:500;background:#0d0d1a;border:4px solid #a855f7;color:#a855f7;font-family:'Press Start 2P',monospace;font-size:8px;padding:10px 14px;box-shadow:4px 4px 0 #000;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .2s}
+.music-fab.playing{background:#a855f7;border-color:#facc15;color:#facc15}
+.music-fab:hover{filter:brightness(1.2)}
+.music-icon{font-size:14px}
+
+/* PARTNERS */
+#partners{background:#080814;padding:60px 16px}
+.partners-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;align-items:center;margin-top:36px}
+.partner-badge{border:3px solid;padding:14px 20px;display:flex;align-items:center;gap:12px;box-shadow:3px 3px 0 #000;min-width:180px}
+.partner-icon{font-size:22px}
+.partner-name{font-size:7px;margin-bottom:2px}
+.partner-desc{font-family:'VT323',monospace;font-size:16px;color:#64748b}
+
 /* TEAM */
 #team{background:#080814}
 .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
@@ -348,6 +374,7 @@ footer{background:#050510;border-top:4px solid #a855f7;padding:48px 16px;positio
           <li class="rm-item"><span style="color:#a855f7">►</span>Social media setup (X &amp; Telegram)</li>
           <li class="rm-item"><span style="color:#a855f7">►</span>Community building begins</li>
           <li class="rm-item"><span style="color:#a855f7">►</span>Logo &amp; branding complete</li>
+          <li class="rm-item"><span style="color:#a855f7">►</span>NFT collection launch</li>
         </ul>
       </div>
       <div class="rm-card" style="border-color:#06b6d4;box-shadow:4px 4px 0 #000,0 0 20px #06b6d433">
@@ -368,7 +395,6 @@ footer{background:#050510;border-top:4px solid #a855f7;padding:48px 16px;positio
           <li class="rm-item"><span style="color:#f59e0b">►</span>Major DEX listing</li>
           <li class="rm-item"><span style="color:#f59e0b">►</span>10,000+ holder milestone</li>
           <li class="rm-item"><span style="color:#f59e0b">►</span>Monad ecosystem integrations</li>
-          <li class="rm-item"><span style="color:#f59e0b">►</span>NFT collection launch</li>
           <li class="rm-item"><span style="color:#f59e0b">►</span>Community governance</li>
         </ul>
       </div>
@@ -474,6 +500,21 @@ footer{background:#050510;border-top:4px solid #a855f7;padding:48px 16px;positio
   </div>
 </section>
 
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="container">
+    <h2 style="font-family:'Press Start 2P',monospace;font-size:clamp(11px,1.8vw,16px);color:#64748b;text-align:center;margin-bottom:12px;text-shadow:2px 2px 0 #000">░ POWERED BY &amp; PART OF ░</h2>
+    <div style="height:2px;background:linear-gradient(90deg,transparent,#a855f744,#06b6d444,transparent);margin-bottom:0"></div>
+    <div class="partners-grid">
+      <div class="partner-badge" style="border-color:#7c3aed55;background:#7c3aed22"><span class="partner-icon">⛓</span><div><div class="partner-name" style="color:#7c3aed">MONAD CHAIN</div><div class="partner-desc">Built on Layer-1</div></div></div>
+      <div class="partner-badge" style="border-color:#06b6d455;background:#06b6d422"><span class="partner-icon">🚀</span><div><div class="partner-name" style="color:#06b6d4">NAD.FUN</div><div class="partner-desc">Launching here</div></div></div>
+      <div class="partner-badge" style="border-color:#3b82f655;background:#3b82f622"><span class="partner-icon">🔷</span><div><div class="partner-name" style="color:#3b82f6">EVM COMPATIBLE</div><div class="partner-desc">Ethereum tooling</div></div></div>
+      <div class="partner-badge" style="border-color:#a855f755;background:#a855f722"><span class="partner-icon">🐑</span><div><div class="partner-name" style="color:#a855f7">COMMUNITY DRIVEN</div><div class="partner-desc">100% for the people</div></div></div>
+      <div class="partner-badge" style="border-color:#22c55e55;background:#22c55e22"><span class="partner-icon">📂</span><div><div class="partner-name" style="color:#22c55e">OPEN SOURCE</div><div class="partner-desc">Transparent code</div></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- TEAM -->
 <section id="team">
   <div class="container">
@@ -531,6 +572,21 @@ footer{background:#050510;border-top:4px solid #a855f7;padding:48px 16px;positio
   </div>
 </section>
 
+<!-- DISCLAIMER BANNER -->
+<div id="disclaimer">
+  <div class="disc-text">
+    <span style="font-size:20px">⚠️</span>
+    <p class="disc-msg"><span class="disc-label">DISCLAIMER:</span> $THEMONATS is a memecoin for entertainment purposes only. Not financial advice. Crypto is high risk — never invest more than you can afford to lose. DYOR.</p>
+  </div>
+  <button class="disc-btn" onclick="dismissDisclaimer()">✓ I UNDERSTAND</button>
+</div>
+
+<!-- MUSIC FAB -->
+<button id="music-fab" class="music-fab" onclick="toggleMusic()">
+  <span class="music-icon" id="music-icon">🔇</span>
+  <span id="music-label">MUSIC</span>
+</button>
+
 <!-- SHARE FAB -->
 <a id="share-fab" class="share-fab" target="_blank" rel="noopener">
   <span class="share-icon">𝕏</span> SHARE
@@ -578,6 +634,39 @@ function copyCA(){const b=document.getElementById('copy-btn');navigator.clipboar
 function openLightbox(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open')}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.getElementById('lb-img').src=''}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+
+// DISCLAIMER
+function dismissDisclaimer(){localStorage.setItem('themonats_disclaimer','1');document.getElementById('disclaimer').classList.add('hidden')}
+if(localStorage.getItem('themonats_disclaimer'))document.getElementById('disclaimer').classList.add('hidden');
+
+// 8-BIT MUSIC
+let audioCtx=null,musicLoop=null,noteIdx=0;
+const MELODY=[[523.25,.15],[659.25,.15],[783.99,.15],[1046.5,.15],[783.99,.15],[659.25,.15],[523.25,.3],[440,.15],[523.25,.15],[659.25,.3],[783.99,.15],[1046.5,.15],[987.77,.15],[783.99,.15],[659.25,.3],[523.25,.15],[440,.15],[523.25,.6]];
+function playLoop(){
+  if(!audioCtx)return;
+  let t=audioCtx.currentTime+.05;
+  MELODY.forEach(([f,d])=>{
+    const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+    o.connect(g);g.connect(audioCtx.destination);
+    o.type='square';o.frequency.value=f;
+    g.gain.setValueAtTime(.04,t);g.gain.exponentialRampToValueAtTime(.001,t+d*.85);
+    o.start(t);o.stop(t+d);t+=d;
+  });
+  const total=MELODY.reduce((s,[,d])=>s+d,0);
+  musicLoop=setTimeout(playLoop,total*1000);
+}
+function toggleMusic(){
+  const fab=document.getElementById('music-fab');
+  const icon=document.getElementById('music-icon');
+  const label=document.getElementById('music-label');
+  if(audioCtx){
+    clearTimeout(musicLoop);audioCtx.close();audioCtx=null;
+    fab.classList.remove('playing');icon.textContent='🔇';label.textContent='MUSIC';
+  } else {
+    audioCtx=new AudioContext();playLoop();
+    fab.classList.add('playing');icon.textContent='🔊';label.textContent='ON';
+  }
+}
 
 // STARS
 (function(){
