@@ -6,11 +6,19 @@
 <title>The Monats | $THEMONATS | 16-Bit Pixel Memecoin on Monad Chain</title>
 <meta name="description" content="The Monats ($THEMONATS) — Classic 16-bit pixel art memecoin launching on Monad Chain via nad.fun. Join the retro revolution!" />
 <meta name="robots" content="index, follow" />
-<meta property="og:title" content="The Monats | $THEMONATS" />
-<meta property="og:description" content="Classic 16-bit pixel memecoin on Monad Chain. Launching on nad.fun." />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="The Monats" />
+<meta property="og:url" content="https://x.com/TheMonats" />
+<meta property="og:title" content="The Monats | $THEMONATS — 16-Bit Pixel Memecoin on Monad" />
+<meta property="og:description" content="🐑 Classic 16-bit pixel art memecoin launching on Monad Chain via nad.fun. Join the retro revolution! #THEMONATS" />
 <meta property="og:image" content="https://i.imgur.com/nDgCUD4.png" />
+<meta property="og:image:width" content="800" />
+<meta property="og:image:height" content="800" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="The Monats | $THEMONATS" />
+<meta name="twitter:site" content="@TheMonats" />
+<meta name="twitter:creator" content="@TheMonatsDEV" />
+<meta name="twitter:title" content="The Monats | $THEMONATS — 16-Bit Pixel Memecoin" />
+<meta name="twitter:description" content="🐑 Classic 16-bit pixel memecoin on Monad Chain. Launching on nad.fun. #THEMONATS #Monad" />
 <meta name="twitter:image" content="https://i.imgur.com/nDgCUD4.png" />
 <link rel="icon" type="image/png" href="https://i.imgur.com/nDgCUD4.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -177,6 +185,34 @@ footer{background:#050510;border-top:4px solid #a855f7;padding:48px 16px;positio
 .music-fab.playing{background:#a855f7;border-color:#facc15;color:#facc15}
 .music-fab:hover{filter:brightness(1.2)}
 .music-icon{font-size:14px}
+
+/* LOADING SCREEN */
+#loading-screen{position:fixed;inset:0;z-index:9999;background:#080814;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .5s}
+#loading-screen.fade{opacity:0;pointer-events:none}
+#loading-screen.gone{display:none}
+.load-logo{width:88px;image-rendering:pixelated;animation:float .8s ease-in-out infinite alternate}
+.load-text{font-size:9px;color:#a855f7;letter-spacing:1px}
+.load-bar-wrap{width:220px;height:16px;border:3px solid #a855f7;background:#0d0d1a}
+.load-bar{height:100%;width:0;background:linear-gradient(90deg,#a855f7,#06b6d4);transition:width .22s ease-out}
+.load-pct{font-family:'VT323',monospace;font-size:18px;color:#64748b}
+@keyframes float{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+
+/* SCROLL TO TOP */
+#scroll-top{position:fixed;bottom:84px;right:24px;z-index:500;background:#0d0d1a;border:4px solid #06b6d4;color:#06b6d4;font-family:'Press Start 2P',monospace;font-size:11px;width:44px;height:44px;box-shadow:4px 4px 0 #000;cursor:pointer;display:none;align-items:center;justify-content:center;transition:all .2s}
+#scroll-top.visible{display:flex}
+#scroll-top:hover{filter:brightness(1.3)}
+
+/* STATS BAR */
+#stats-bar{padding:36px 16px;background:#0a0a18;border-top:2px solid #1a1a30;border-bottom:2px solid #1a1a30}
+.stats-inner{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center}
+.stat-item{text-align:center;min-width:140px;padding:0 16px}
+.stat-value{font-size:clamp(14px,2vw,22px);text-shadow:0 0 16px currentColor}
+.stat-label{font-family:'VT323',monospace;font-size:17px;color:#475569;margin-top:6px}
+.stat-divider{width:2px;height:40px;background:#1e1e3a;margin:0 8px}
+
+/* GALLERY TWEET BTN */
+.tweet-btn{position:absolute;top:6px;right:6px;z-index:3;font-family:'Press Start 2P',monospace;font-size:7px;background:#000;color:#fff;border:2px solid #fff;padding:4px 6px;cursor:pointer;opacity:.85;box-shadow:2px 2px 0 #a855f7}
+.tweet-btn:hover{opacity:1;box-shadow:2px 2px 0 #06b6d4}
 
 /* PARTNERS */
 #partners{background:#080814;padding:60px 16px}
@@ -500,6 +536,19 @@ footer{background:#050510;border-top:4px solid #a855f7;padding:48px 16px;positio
   </div>
 </section>
 
+<!-- STATS BAR -->
+<section id="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-value" style="color:#a855f7" data-target="1000000000" data-fmt="billion">0</div><div class="stat-label">TOTAL SUPPLY</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><div class="stat-value" style="color:#ec4899" data-target="15" data-suffix="+">0</div><div class="stat-label">MEMES CREATED</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><div class="stat-value" style="color:#06b6d4" data-target="4">0</div><div class="stat-label">TEAM MEMBERS</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><div class="stat-value" style="color:#facc15" data-target="100" data-suffix="%">0</div><div class="stat-label">COMMUNITY OWNED</div></div>
+  </div>
+</section>
+
 <!-- PARTNERS -->
 <section id="partners">
   <div class="container">
@@ -572,6 +621,17 @@ footer{background:#050510;border-top:4px solid #a855f7;padding:48px 16px;positio
   </div>
 </section>
 
+<!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <img class="load-logo" src="https://i.imgur.com/nDgCUD4.png" alt="loading" />
+  <div class="load-text">LOADING $THEMONATS...</div>
+  <div class="load-bar-wrap"><div class="load-bar" id="load-bar"></div></div>
+  <div class="load-pct" id="load-pct">0%</div>
+</div>
+
+<!-- SCROLL TO TOP -->
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">▲</button>
+
 <!-- DISCLAIMER BANNER -->
 <div id="disclaimer">
   <div class="disc-text">
@@ -634,6 +694,61 @@ function copyCA(){const b=document.getElementById('copy-btn');navigator.clipboar
 function openLightbox(src){document.getElementById('lb-img').src=src;document.getElementById('lightbox').classList.add('open')}
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.getElementById('lb-img').src=''}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+
+// LOADING SCREEN
+(function(){
+  const el=document.getElementById('loading-screen');
+  const bar=document.getElementById('load-bar');
+  const pct=document.getElementById('load-pct');
+  const steps=[15,35,55,75,90,100];let i=0;
+  const t=setInterval(()=>{
+    bar.style.width=steps[i]+'%';pct.textContent=steps[i]+'%';i++;
+    if(i>=steps.length){clearInterval(t);setTimeout(()=>el.classList.add('fade'),200);setTimeout(()=>el.classList.add('gone'),700);}
+  },240);
+})();
+
+// SCROLL TO TOP
+window.addEventListener('scroll',()=>{
+  const btn=document.getElementById('scroll-top');
+  if(window.scrollY>400)btn.classList.add('visible');else btn.classList.remove('visible');
+},{passive:true});
+
+// COUNT-UP STATS
+(function(){
+  const items=document.querySelectorAll('.stat-value[data-target]');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting||entry.target.dataset.done)return;
+      entry.target.dataset.done='1';
+      const target=+entry.target.dataset.target;
+      const suffix=entry.target.dataset.suffix||'';
+      const fmt=entry.target.dataset.fmt;
+      const dur=1400,t0=Date.now();
+      const tick=()=>{
+        const pct=Math.min((Date.now()-t0)/dur,1);
+        const n=Math.floor(Math.sqrt(pct)*target);
+        if(fmt==='billion') entry.target.textContent=(n>=1e9?'1B':Math.floor(n/1e6)+'M')+suffix;
+        else entry.target.textContent=n+suffix;
+        if(pct<1)requestAnimationFrame(tick);
+        else entry.target.textContent=(fmt==='billion'?'1B':target)+suffix;
+      };
+      requestAnimationFrame(tick);
+    });
+  },{threshold:0.4});
+  items.forEach(el=>obs.observe(el));
+})();
+
+// GALLERY TWEET BUTTONS
+document.querySelectorAll('.gallery-item').forEach(item=>{
+  const btn=document.createElement('button');
+  btn.className='tweet-btn';btn.textContent='𝕏';btn.title='Share on X';
+  btn.onclick=e=>{
+    e.stopPropagation();
+    const text='🐑 $THEMONATS going to the MOON on Monad Chain! 🚀 The OG 16-bit pixel memecoin launching on nad.fun! #THEMONATS #Monad #nadfun';
+    window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(text)+'&url='+encodeURIComponent('https://x.com/TheMonats'),'_blank');
+  };
+  item.appendChild(btn);
+});
 
 // DISCLAIMER
 function dismissDisclaimer(){localStorage.setItem('themonats_disclaimer','1');document.getElementById('disclaimer').classList.add('hidden')}
